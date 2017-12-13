@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using static WebApplication8.Models.Mission;
-using static WebApplication8.Models.Question;
-using static WebApplication8.Models.Reply;
-using static WebApplication8.Models.QuestionReply;
 
-namespace WebApplication8.Controllers
+namespace Project2_IS_403.Controllers
 {
 
     public class HomeController : Controller
     {
         //Define Lists for all model objects
-        static List<Missions> missionList = new List<Missions>();
+        /*static List<Missions> missionList = new List<Missions>();
         static Stack<Questions> questionStack = new Stack<Questions>();
         static List<Replies> replyList = new List<Replies>();
-        static List<QuestionReplies> questionReplyList = new List<QuestionReplies>();
+        static List<QuestionReplies> questionReplyList = new List<QuestionReplies>();*/
 
         static int menuSelection;
 
@@ -25,7 +21,7 @@ namespace WebApplication8.Controllers
         public void loadMissionInfo()
         {
             //Load Mission Info if the missionList is empty
-            if (!missionList.Any())
+            /*if (!missionList.Any())
             {
                 missionList.Add(item: new Missions() { id = 1, missionName = "Nevada Las Vegas Mission", missionPresidentName = "Gerald Carol", missionAddress = "P.O. Box 278 37th Steet Post Office, Las Vegas, Nevada", missionLanguage = "English", missionClimate = "Hot and Dry", dominantReligion = "Atheist", imgFileName = "battleborn.png" });
                 missionList.Add(new Missions() { id = 2, missionName = "Taiwan Taipei Mission", missionPresidentName = "Xhang Cho", missionAddress = "3785 Palace Way, Taipei, Taiwan", missionLanguage = "Mandarin Chinese", missionClimate = "Humid", dominantReligion = "Buddhism", imgFileName = "taiwan.png" });
@@ -44,9 +40,7 @@ namespace WebApplication8.Controllers
                 questionStack.Push(new Questions() { questionID = 1, questionGiver = "Jared Falke", questionText = "How can I best prepare spiritually to be a missionary?", date = new DateTime(2016, 5, 8, 22, 15, 8), replyID = 1 });
                 questionStack.Push(new Questions() { questionID = 2, questionGiver = "Scott McFry", questionText = "Do I have to meet physical requirements to serve a mission?", date = new DateTime(2016, 12, 30, 12, 55, 22), replyID = 2 });
                 questionStack.Push(new Questions() { questionID = 3, questionGiver = "Tyler Green", questionText = "What is a typical day for a missionary like?", date = new DateTime(2017, 8, 20, 15, 2, 17), replyID = 3 });
-
-            }
-
+            }*/
         }
 
         //Home page
@@ -71,7 +65,7 @@ namespace WebApplication8.Controllers
         //Mission page
         public ActionResult Mission()
         {
-            loadMissionInfo();
+            //loadMissionInfo();
             return View();
         }
 
@@ -82,13 +76,13 @@ namespace WebApplication8.Controllers
             int iCount = 0;
             ViewBag.iCount = iCount;
 
-            loadMissionInfo();
+            //loadMissionInfo();
             //Load data structures into viewbag
-            ViewBag.QuestionList = questionStack;
+            /*ViewBag.QuestionList = questionStack;
             ViewBag.MissionClass = missionList[menu - 1];
             ViewBag.ReplyList = replyList;
             ViewBag.QuestionReplyList = questionReplyList;
-            menuSelection = menu;
+            menuSelection = menu;*/
             return View();
         }
 
@@ -100,7 +94,6 @@ namespace WebApplication8.Controllers
             {
                 string qText = Request["questionText"];
                 string qName = Request["questionName"];
-                questionStack.Push(new Questions() { questionGiver = qName, questionText = qText, date = DateTime.Now });
             }
             //What happens when the user tries to post a reply.
             else if (submit == "Reply")
@@ -111,10 +104,10 @@ namespace WebApplication8.Controllers
             */
             }
             //Load the ViewBag with DataStructures
-            ViewBag.ReplyList = replyList;
+            /*ViewBag.ReplyList = replyList;
             ViewBag.QuestionReplyList = questionReplyList;
             ViewBag.QuestionList = questionStack;
-            ViewBag.MissionClass = missionList[menuSelection - 1];
+            ViewBag.MissionClass = missionList[menuSelection - 1];*/
 
             return View();
         }
