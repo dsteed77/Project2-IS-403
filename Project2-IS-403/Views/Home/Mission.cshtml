@@ -1,0 +1,36 @@
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+
+
+@{
+    ViewBag.Title = "Mission";
+}
+
+<br />
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="breadcrumb-item active">Mission</li>
+</ol>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid">
+        <br />
+        <br />
+        <h1 style="color: white;">Missions</h1>
+        <p class="lead"></p>
+    </div>
+</div>
+<p class="lead">Please Choose Your Mission:</p>
+<!--Here's a neat looking dropdown.. It doesn't function yet but we will add that later.-->
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Missions
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li>@Html.ActionLink("Nevada Las Vegas Mission", "MissionDetails", "Home", new { menu = 1 }, null)</li>
+        <li>@Html.ActionLink("Taiwan Taipei Mission", "MissionDetails", "Home", new { menu = 2 }, null)</li>
+        <li>@Html.ActionLink("England London Mission", "MissionDetails", "Home", new { menu = 3 }, null)</li>
+    </ul>
+</div>

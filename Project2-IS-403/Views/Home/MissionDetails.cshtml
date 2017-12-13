@@ -1,0 +1,115 @@
+﻿
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+@{
+    ViewBag.Title = "MissionDetails";
+}
+
+<br />
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+    <li class="breadcrumb-item">@Html.ActionLink("Mission", "Mission", "Home")</li>
+    <li class="breadcrumb-item active">Mission Details</li>
+</ol>
+
+
+<h2>MissionDetails</h2>
+
+<div class="row">
+    <div class="col-xs-6">
+        <!--Loads the mission flag-->
+        <img src="~/Content/img/@ViewBag.MissionClass.imgFileName" alt="Mission Pic" class="missionBanner" />
+    </div>
+    <!--Loads the mission information-->
+    <div class="col-xs-6">
+        <h3>@ViewBag.MissionClass.missionName</h3>
+
+        <table>
+            <tr>
+                <td class="td1">President's Name:</td>
+                <td class="td2">@ViewBag.MissionClass.missionPresidentName</td>
+            </tr>
+            <tr>
+                <td class="td1">Address:</td>
+                <td>@ViewBag.MissionClass.missionAddress</td>
+            </tr>
+            <tr>
+                <td class="td1">Language:</td>
+                <td>@ViewBag.MissionClass.missionLanguage</td>
+            </tr>
+            <tr>
+                <td class="td1">Climate:</td>
+                <td>@ViewBag.MissionClass.missionClimate</td>
+            </tr>
+            <tr>
+                <td class="td1">Dominant Religion:</td>
+                <td>@ViewBag.MissionClass.dominantReligion</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-3">
+    </div>
+    <!--Loads the mission Q& A-->
+    <div class="col-xs-6">
+        <br />
+        <h2 style="text-align:center">Mission Q&A</h2>
+        @{
+            foreach (var item in ViewBag.QuestionList)
+            {
+
+                <p>
+                    <span style="font-weight:lighter; font-size:10px; color:gray;">@item.date</span>
+                    <br />
+                    <b style="font-size:18px;">@item.questionGiver</b>
+                    <span style="font-size:16px;">@item.questionText</span>
+                </p>
+
+                foreach (var replyItem in ViewBag.ReplyList)
+                {
+                    if (replyItem.replyID == item.replyID)
+                    {
+                        <b style="font-size:14px;">@replyItem.replyGiver </b>
+                        <span style="font-size:12px;">@replyItem.replyText </span>
+                        ViewBag.iCount = item.replyID;
+                    }
+                }
+                <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#@ViewBag.iCount">Reply</button>
+                <div id="@ViewBag.iCount" class="collapse">
+                    @using (Html.BeginForm())
+                    {
+                        <span style="margin-right: 25%;">Name</span> <span>Reply</span>
+                        <br />
+                        @Html.TextBox("replyName") <span> </span>
+                        @Html.TextBox("replyBox")
+                        <input name="submit" id="Reply" type="submit" value="Reply">
+
+                    }
+                </div>
+                <br />
+                <br />
+            }
+
+        }
+
+        <h3 style="text-align:center;">Ask A Question</h3>
+        @using (Html.BeginForm())
+        {
+            <p>
+                Your Name: <br />
+                @Html.TextBox("questionName")
+                <br /><br />
+                Question: <br />
+                @Html.TextArea("questionText")
+                <br /><br />
+                <input name="submit" id="submit" type="submit" value="Post" />
+            </p>
+        }
+
+    </div>
+    <div class="col-xs-3">
+    </div>
+</div>
